@@ -1,0 +1,18 @@
+# Node
+node_modules/
+
+# Env
+.env
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.pgdata/
+
+# Editor
+.vscode/
