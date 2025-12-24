@@ -1,23 +1,41 @@
-name: CI
+# اسم الـ Workflow (سيظهر في GitHub)
+name: Smart Campus CI
 
+# متى يعمل؟
 on:
+  # عند push على main
   push:
-    branches: [main]
-  pull_request:
+    branches: [ "main" ]
 
+  # عند فتح Pull Request على main
+  pull_request:
+    branches: [ "main" ]
+
+# تعريف الوظائف (Jobs)
 jobs:
-  backend:
+  build-backend:
+    # نظام التشغيل
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      # 1️⃣ جلب الكود من GitHub
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      # 2️⃣ إعداد Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      # 3️⃣ تثبيت dependencies
+      - name: Install backend dependencies
         run: |
           cd backend
           npm install
+
+      # 4️⃣ تشغيل فحص بسيط (بدل tests حاليًا)
+      - name: Run backend (syntax check)
+        run: |
+          cd backend
+          node server.js
